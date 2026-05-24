@@ -8,6 +8,7 @@ a static HTML site into _site/.
 Run from repo root:  python3 _build/build.py
 """
 
+import json
 import os
 import re
 import shutil
@@ -97,16 +98,82 @@ def render_nav(config: dict, current_path: str) -> str:
     return "\n      ".join(items)
 
 
+def render_seo_head(config: dict, *, full_title: str, current_path: str) -> str:
+    """
+    Build the invisible-to-visitors <head> SEO block: meta description,
+    canonical, Open Graph / Twitter Card, and schema.org Person JSON-LD.
+    Degrades to an empty string if config['seo'] is absent.
+    """
+    seo = config.get("seo") or {}
+    base_url = (seo.get("base_url") or "").rstrip("/")
+    description = seo.get("description") or ""
+    og_image = seo.get("og_image") or ""
+    same_as = seo.get("same_as") or []
+    gsv = seo.get("google_site_verification") or ""
+
+    if not (base_url or description):
+        return ""
+
+    canonical = f"{base_url}{current_path}" if base_url else ""
+    if canonical and not canonical.endswith("/"):
+        canonical += "/"
+
+    if og_image and og_image.startswith("/") and base_url:
+        og_image = base_url + og_image
+
+    lines: list[str] = []
+    if gsv:
+        lines.append(f'<meta name="google-site-verification" content="{escape(gsv)}">')
+    if description:
+        lines.append(f'<meta name="description" content="{escape(description)}">')
+    if canonical:
+        lines.append(f'<link rel="canonical" href="{escape(canonical)}">')
+
+    # Open Graph / Twitter
+    lines.append('<meta property="og:type" content="website">')
+    lines.append(f'<meta property="og:title" content="{full_title}">')
+    if description:
+        lines.append(f'<meta property="og:description" content="{escape(description)}">')
+    if canonical:
+        lines.append(f'<meta property="og:url" content="{escape(canonical)}">')
+    if og_image:
+        lines.append(f'<meta property="og:image" content="{escape(og_image)}">')
+    lines.append('<meta name="twitter:card" content="summary_large_image">')
+
+    # schema.org Person — helps Google disambiguate which Michael Harmon this is.
+    # We don't assert worksFor (he's a contributor, not staff); the sameAs link
+    # to his NYT author page is the signal that ties him to the Times.
+    person = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": config["site_name"],
+        "url": base_url + "/" if base_url else None,
+        "jobTitle": seo.get("job_title"),
+        "sameAs": same_as or None,
+    }
+    person = {k: v for k, v in person.items() if v is not None}
+    lines.append(
+        '<script type="application/ld+json">'
+        + json.dumps(person, ensure_ascii=False)
+        + "</script>"
+    )
+
+    return "\n  " + "\n  ".join(lines)
+
+
 def render_page(config: dict, *, title: str, current_path: str, body: str) -> str:
     site_name = escape(config["site_name"])
-    full_title = escape(title) if current_path == "/" else f"{escape(title)} | {site_name}"
+    seo = config.get("seo") or {}
+    home_title = escape(seo.get("title") or config["site_name"])
+    full_title = home_title if current_path == "/" else f"{escape(title)} | {site_name}"
     nav = render_nav(config, current_path)
+    seo_head = render_seo_head(config, full_title=full_title, current_path=current_path)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{full_title}</title>
+  <title>{full_title}</title>{seo_head}
   {GOOGLE_FONTS}
   <link rel="stylesheet" href="/style.css">
 </head>
@@ -188,6 +255,35 @@ def write_page(path: str, html: str) -> None:
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
     print(f"  wrote {out.relative_to(SITE)}")
+
+
+def write_robots_and_sitemap(config: dict) -> None:
+    """Emit robots.txt and sitemap.xml into _site/ from config['nav']."""
+    seo = config.get("seo") or {}
+    base_url = (seo.get("base_url") or "").rstrip("/")
+    if not base_url:
+        return
+
+    sitemap_url = f"{base_url}/sitemap.xml"
+    (SITE / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {sitemap_url}\n",
+        encoding="utf-8",
+    )
+
+    urls = []
+    for item in config["nav"]:
+        path = item["path"]
+        loc = base_url + (path if path.endswith("/") else path + "/")
+        urls.append(f"  <url><loc>{escape(loc)}</loc></url>")
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(urls)
+        + "\n</urlset>\n"
+    )
+    (SITE / "sitemap.xml").write_text(sitemap, encoding="utf-8")
+    print("  wrote robots.txt")
+    print("  wrote sitemap.xml")
 
 
 # ─── Page builders ───────────────────────────────────────────────────────────
@@ -376,6 +472,7 @@ def main() -> None:
     build_writing(config)
     build_about(config)
     build_contact(config)
+    write_robots_and_sitemap(config)
 
     print(f"\nDone. Site built to {SITE}")
 

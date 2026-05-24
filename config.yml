@@ -1,6 +1,19 @@
 site_name: Michael Harmon
 tagline: "For The New York Times"
 
+seo:
+     title: "Michael Harmon — New York Times Travel & Metro Writer"
+     description: "Michael Harmon is a writer and journalist whose work appears in The New York Times."
+     base_url: "https://mghwrites.com"
+     og_image: "/images/about/portrait.jpg"   # reuse the existing headshot
+     google_site_verification: "IqMR_X51VRfrHDsDi8mAjvtTZlCJqbEhaeduKFbQ79g"
+     same_as:
+       - https://www.nytimes.com/by/michael-harmon
+       - https://muckrack.com/michael-harmon-2
+       - https://www.mcsweeneys.net/authors/michael-harmon
+       - https://blog.londolozi.com/profile/mike19b/
+       - https://aroundtheworldforasandwich.substack.com/
+
 # The big serif headline on the homepage / writing page (NYT-style nameplate)
 home_heading: Michael's Writing
 
