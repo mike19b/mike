@@ -6,14 +6,38 @@
 #
 # Watch out: if any text contains a colon, wrap the whole value in double quotes.
 
-- kicker: Metro
+- kicker: Real Estate
+  title: "Is Long Beach Island’s Audacious Architecture Being Washed Away?"
+  dek: The beloved summer getaway off the Jersey Shore has been a playground for modernism. But a new wave of Hamptons-style mansions may steal its identity.
+  publication: The New York Times
+  date: May 22, 2026
+  link: https://www.nytimes.com/2026/05/22/realestate/long-beach-island-new-jersey-shore-architecture.html
+  image: lbi.png
+  featured: true
+
+- kicker: Travel
+  title: "Railway, Meet Milky Way: 5 Great Stargazing Trains"
+  dek: On nighttime excursions in dark-sky hot spots like Norway, New Zealand and Nevada, all you have to do is relax and look up. The stars will do the rest.
+  publication: The New York Times
+  date: May 13, 2026
+  link: https://www.nytimes.com/2026/05/13/travel/stargazing-train-rides.html
+  image: stargazer.png
+
+- kicker: Travel
+  title: "Venice for Less: A $1,000 Weekend Test"
+  dek: In a city known for high prices and dense crowds, a shoulder-season trip proves it’s possible to avoid both.
+  publication: The Wall Street Journal
+  date: May 1, 2026
+  link: https://www.wsj.com/lifestyle/travel/venice-affordable-travel-guide-77babf58#comments_sector
+  image: venice.png
+
+  - kicker: Metro
   title: "Commuters, Rejoice! The New Portal Bridge Is Ready for Riders."
   dek: The old Portal Bridge disrupted rail commutes in New Jersey for decades, frequently getting stuck when it swung to let boat traffic pass. Now a new bridge is open to the public.
   publication: The New York Times
   date: March 15, 2026
   link: https://www.nytimes.com/2026/03/15/nyregion/portal-bridge-open-construction.html
   image: portal-bridge.jpg
-  featured: true
 
 - kicker: Metro
   title: "As They Wait (and Wait) for 'S.N.L.' Tickets, These Fans Become Friends"
