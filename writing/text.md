@@ -1,1 +1,1 @@
-Selected reporting and features written for Travel, Metro, Styles, and Real Estate.
+Selected reporting and features written for the Travel, Metro, Styles, & Real Estate (plus WSJ Off Duty).
