@@ -6,6 +6,23 @@
 #
 # Watch out: if any text contains a colon, wrap the whole value in double quotes.
 
+- kicker: Travel
+  title: "No Car? No Problem: An East Coast Odyssey by Train, Ferry and Bus"
+  dek: A self-described transit romantic set out to visit prime summer destinations using only public transportation. Would getting there really be half the fun?
+  publication: The New York Times
+  date: September 2, 2026
+  link: https://www.nytimes.com/2026/09/02/travel/long-island-new-england-trip-train-bus-ferry.html
+  image: transit.png
+  featured: true
+
+- kicker: Real Estate
+  title: "Cape Cod Learns to Live With Sharks"
+  dek: As great white sharks have moved into Massachusetts waters, the Cape has changed to make room for them.
+  publication: The New York Times
+  date: August 29, 2026
+  link: https://www.nytimes.com/2026/08/29/realestate/cape-cod-shark-tourism.html
+  image: sharks.png
+
 - kicker: Real Estate
   title: "Is Long Beach Island’s Audacious Architecture Being Washed Away?"
   dek: The beloved summer getaway off the Jersey Shore has been a playground for modernism. But a new wave of Hamptons-style mansions may steal its identity.
@@ -13,15 +30,6 @@
   date: May 22, 2026
   link: https://www.nytimes.com/2026/05/22/realestate/long-beach-island-new-jersey-shore-architecture.html
   image: lbi.png
-  featured: true
-
-- kicker: Travel
-  title: "Railway, Meet Milky Way: 5 Great Stargazing Trains"
-  dek: On nighttime excursions in dark-sky hot spots like Norway, New Zealand and Nevada, all you have to do is relax and look up. The stars will do the rest.
-  publication: The New York Times
-  date: May 13, 2026
-  link: https://www.nytimes.com/2026/05/13/travel/stargazing-train-rides.html
-  image: stargazer.png
 
 - kicker: Travel
   title: "Venice for Less: A $1,000 Weekend Test"
@@ -40,7 +48,7 @@
   image: portal-bridge.jpg
 
 - kicker: Metro
-  title: "As They Wait (and Wait) for 'S.N.L.' Tickets, These Fans Become Friends"
+  title: As They Wait (and Wait) for 'S.N.L.' Tickets, These Fans Become Friends
   dek: "Getting a seat inside the studio at 'Saturday Night Live' involves persistence and good humor. Some people build their weekends around it."
   publication: The New York Times
   date: January 24, 2026
@@ -113,3 +121,11 @@
   date: July 5, 2024
   link: https://www.nytimes.com/2024/07/05/travel/budget-orient-express-train.html
   image: orient-express.jpg
+
+- kicker: Travel
+  title: Indigenous Tourism Goes Deeper Than "Dinner and a Show"
+  dek: Around the globe, travelers are looking to get beyond superficial interactions with Native cultures for more in-depth experiences, like tours led by Indigenous guides and stays at Native-owned lodges.
+  publication: The New York Times
+  date: January 15, 2024
+  link: https://www.nytimes.com/2024/01/15/travel/indigenous-native-led-tourism.html
+  image: indigenous.png
