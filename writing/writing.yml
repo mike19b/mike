@@ -32,11 +32,19 @@
   image: lbi.png
 
 - kicker: Travel
+  title: "Railway, Meet Milky Way: 5 Great Stargazing Trains"
+  dek: On nighttime excursions in dark-sky hot spots like Norway, New Zealand and Nevada, all you have to do is relax and look up. The stars will do the rest.
+  publication: The New York Times
+  date: May 13, 2026
+  link: https://www.nytimes.com/2026/05/13/travel/stargazing-train-rides.html
+  image: stargazer.png  
+
+- kicker: Travel
   title: "Venice for Less: A $1,000 Weekend Test"
   dek: In a city known for high prices and dense crowds, a shoulder-season trip proves it’s possible to avoid both.
   publication: The Wall Street Journal
   date: May 1, 2026
-  link: https://www.wsj.com/lifestyle/travel/venice-affordable-travel-guide-77babf58#comments_sector
+  link: https://www.wsj.com/lifestyle/travel/venice-affordable-travel-guide-77babf58
   image: venice.png
 
 - kicker: Metro
