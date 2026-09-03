@@ -1,1 +1,1 @@
-Selected reporting and features written for the Travel, Metro, Styles, Real Estate, and more.
+Reporting and features written for the Travel, Metro, Styles, Real Estate, and more.
